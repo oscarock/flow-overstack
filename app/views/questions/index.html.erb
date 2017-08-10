@@ -17,6 +17,8 @@
               Created: <strong><%= question.created_at %></strong>
               <br>
               Email: <strong><%= question.user.email  %></strong>
+              <br>
+              <strong><%= link_to "More", question_path(question) %></strong>
             </div>
           </div>
         </div>
