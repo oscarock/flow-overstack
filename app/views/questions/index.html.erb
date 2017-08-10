@@ -1,0 +1,12 @@
+<table class="table-hover">
+  <tr>
+    <th>Titulo</th>
+    <th>Contenido</th>
+  </tr>
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.title %></td>
+      <td><%= question.content %></td>
+    </tr>
+  <% end %>
+</table>

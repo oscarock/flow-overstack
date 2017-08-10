@@ -22,8 +22,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            Logged in as <strong><%= current_user.email %></strong>.
-            <li><a href="<%= edit_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> Edit User</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>  <%= current_user.email %></a></li>
+            <li><a href="<%= edit_user_registration_path %>"><span class="glyphicon glyphicon-edit"></span> Edit User</a></li>
             <li><a href="<%= destroy_user_session_path %>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
           <% else %>
             <li><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
