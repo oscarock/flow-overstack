@@ -1,12 +1,25 @@
-<table class="table-hover">
-  <tr>
-    <th>Titulo</th>
-    <th>Contenido</th>
-  </tr>
-  <% @questions.each do |question| %>
-    <tr>
-      <td><%= question.title %></td>
-      <td><%= question.content %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row">
+      <h2 class="text-left">Questions</h2>
+      <br>
+      <%= link_to "Add Question", new_question_path, class: " btn btn-success"  %>
+      <br>
+      <br>
+      <% @questions.each do |question| %>
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong><%= question.title %></strong></div>
+          <div class="panel-body">
+            <div><span class="label label-primary">Answer #</span></div>
+            <div><span class="label label-primary">Votes #</span></div>
+            <br>
+            <%= question.content %>
+            <div class="text-right fixed-bottom">
+              Created: <strong><%= question.created_at %></strong>
+              <br>
+              Email: <strong><%= question.user.email  %></strong>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
