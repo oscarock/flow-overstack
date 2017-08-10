@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-# https://tutoronrails.com/pages/7-relaciones-polimorficas
-# https://carlossanchezperez.wordpress.com/2013/01/13/mi-guia-para-especificar-las-relaciones-en-los-modelos-active-record-rubyonrails/
 # <?xml version="1.0" encoding="utf-8" ?>
 # <!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
 # <!-- Active URL: http://schemadesigner.devbootcamp.com/ -->
@@ -38,7 +36,7 @@ end
 #     <type label="SET" length="1" sql="SET" quote=""/>
 #     <type label="Bit" length="0" sql="bit" quote=""/>
 #   </group>
-# </datatypes><table x="468" y="95" name="questions">
+# </datatypes><table x="462" y="70" name="questions">
 # <row name="id" null="1" autoincrement="1">
 # <datatype>INTEGER</datatype>
 # <default>NULL</default></row>
@@ -73,14 +71,14 @@ end
 # <part>id</part>
 # </key>
 # </table>
-# <table x="1060" y="478" name="votes">
+# <table x="1216" y="486" name="votes">
 # <row name="id" null="1" autoincrement="1">
 # <datatype>INTEGER</datatype>
 # <default>NULL</default></row>
-# <row name="votes_type" null="1" autoincrement="0">
+# <row name="voteable_type" null="1" autoincrement="0">
 # <datatype>VARCHAR</datatype>
 # <default>NULL</default></row>
-# <row name="votes_id" null="1" autoincrement="0">
+# <row name="voteable_id" null="1" autoincrement="0">
 # <datatype>INTEGER</datatype>
 # <default>NULL</default><relation table="comments" row="id" />
 # <relation table=" answers" row="id" />
@@ -89,7 +87,7 @@ end
 # <part>id</part>
 # </key>
 # </table>
-# <table x="753" y="216" name="comments">
+# <table x="807" y="217" name="comments">
 # <row name="id" null="1" autoincrement="1">
 # <datatype>INTEGER</datatype>
 # <default>NULL</default></row>
@@ -108,7 +106,7 @@ end
 # <part>id</part>
 # </key>
 # </table>
-# <table x="473" y="529" name=" answers">
+# <table x="493" y="538" name=" answers">
 # <row name="id" null="1" autoincrement="1">
 # <datatype>INTEGER</datatype>
 # <default>NULL</default></row>
