@@ -1,0 +1,22 @@
+<div class="container">
+  <h1><%= @question.title %></h1>
+  <br>
+  <p><%= @question.content %></p>
+  <hr>
+  <% if @question.comments.count == 0 %>
+      <h1>Sin Comentarios :(</h1>
+  <% else %>
+    <h1>Comentarios:</h1>
+  <% end %>
+  <% @question.comments.each do |comment| %>
+    <%= comment.title %>
+  <% end %>
+  <hr>
+  <br>
+  <%= form_for [@question, @comment] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar" %><br>
+    </div>
+  <%= f.submit "Comentar", class: "pull-right btn btn-success" %>
+  <% end %>
+</div>
