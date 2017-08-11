@@ -1,0 +1,22 @@
+<div class="container">
+  <% if @errors %>
+      <% @errors.each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2 class="text-center">Register Question</h2>
+      <br>
+      <%= form_for @question do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title, class: "form-control input-lg", placeholder: "Title" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :content, class: "form-control input-lg", placeholder: "Content" %><br>
+        </div>
+        <%= f.submit "Send", class: "btn btn-success btn-lg btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>
