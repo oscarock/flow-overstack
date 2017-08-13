@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   get 'add_vote', to: 'votes#addVote'
-  get 'question/:id/remove_vote', to: 'votes#removeVote'
+  get 'remove_vote', to: 'votes#removeVote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 # <?xml version="1.0" encoding="utf-8" ?>
