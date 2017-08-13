@@ -1,8 +1,17 @@
 <div class="container">
   <h1><%= @question.title %></h1>
   <br>
-  <div class="panel panel-primary">
-    <div class="panel-body"><%= @question.content %></div>
+  <div class="row">
+    <div class="col-sm-1">
+      <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+      <h4 class="text-center">0</h4>
+      <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+    </div>
+    <div class="col-sm-11">
+      <div class="panel panel-primary" style="margin-top: 25px;">
+        <div class="panel-body"><%= @question.content %></div>
+      </div>
+    </div>
   </div>
   <hr>
   <% if @question.comments.count == 0 %>
@@ -12,25 +21,109 @@
     <br>
   <% end %>
   <% @question.comments.each do |comment| %>
-    <div class="col-sm-10 col-sm-offset-1">
-      <div class="panel panel-primary">
-        <div class="panel-body"><%= comment.title %></div>
+    <div class="row">
+      <div class="col-sm-1">
+        <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+        <h4 class="text-center">0</h4>
+        <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+      </div>
+      <div class="col-sm-11">
+        <div class="panel panel-primary" style="margin-top: 25px;">
+          <div class="panel-body"><%= comment.title %></div>
+        </div>
       </div>
     </div>
   <% end %>
   <br>
   <%= form_for [@question, @comment] do |f| %>
     <div class="form-group">
+      <%= f.hidden_field 'commentable_id', value: @question.id %>
+      <%= f.hidden_field 'commentable', value: 'question' %>
       <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar" %><br>
     </div>
   <%= f.submit "Comentar", class: "pull-right btn btn-success" %>
   <% end %>
 
-  <h1>Respuesta(s):</h1>
-  <%= form_for [@question, @answer] do |f| %>
-  <div class="form-group">
-    <%= f.text_area :content, class: "form-control input-lg", placeholder: "Responder" %><br>
-  </div>
-  <%= f.submit "Responder", class: "pull-right btn btn-success" %>
+  <% if @question.answers.count == 0 %>
+    <h1>Sin Respuesta(s):(</h1>
+  <%else%>
+    <h1>Respuesta(s):</h1>
+  <%end%>
+  <br>
+  <% @question.answers.each do |answer| %>
+
+      <div class="row">
+        <div class="col-sm-1">
+          <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+          <h4 class="text-center">0</h4>
+          <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+        </div>
+        <div class="col-sm-11">
+          <div class="panel panel-primary" style="margin-top: 25px;">
+            <div class="panel-body"><%= answer.content %></div>
+          </div>
+        </div>
+      </div>
+
+
+
+        <% if answer.comments.count == 0 %>
+          <div class="row">
+            <div class="col-sm-6">
+                <h3 class="text-center">Sin Respuestas :(</h3>
+            </div>
+          </div>
+        <% else %>
+          <div class="row">
+            <div class="col-sm-6">
+                <h3 class="text-center">Comentario Respuesta(s)</h3>
+            </div>
+          </div>
+        <% end %>
+
+
+
+        <% answer.comments.each do |answer_comment| %>
+          <div class="row">
+            <div class="col-sm-2" style="right: -65px;">
+              <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+              <h4 class="text-center">0</h4>
+              <h4 class="text-center"><a href="#"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+            </div>
+            <div class="col-sm-10">
+              <div class="panel panel-primary" style="margin-top: 25px;">
+                <div class="panel-body"><%= answer_comment.title %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- <div class="btn btn-primary"> -->
+        <%= form_for [@question, @comment] do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field 'commentable_id', value: answer.id %>
+            <%= f.hidden_field 'commentable', value: 'answer' %>
+            <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar Respuesta" %><br>
+          </div>
+        <%= f.submit "Comentar Respuesta", class: "pull-right btn btn-success" %><br>
+        <!-- </div> -->
+        <br>
+        <% end %>
+
   <% end %>
+
+  <%= form_for [@question, @answer] do |f| %>
+ <div class="form-group">
+   <%= f.text_area :content, class: "form-control input-lg", placeholder: "Responder" %><br>
+ </div>
+ <%= f.submit "Responder", class: "pull-right btn btn-success" %>
+ <% end %>
+
+
+
+
+
+
+
+
 </div>

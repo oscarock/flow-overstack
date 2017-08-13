@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    question = Question.find(params[:question_id])
-    @comments = question.comments.new(comment_params)
+    # question = Question.find(params[:question_id])
+    commentable = params[:comment][:commentable].classify.constantize.find(params[:comment][:commentable_id])
+    @comments = commentable.comments.new(comment_params)
     if @comments.save
-      redirect_to questions_path
+      redirect_to question_path(params[:comment][:commentable_id])
     else
-      render questions_path(question)
+      render question_path(params[:comment][:commentable_id])
     end
   end
 
