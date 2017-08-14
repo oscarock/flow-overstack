@@ -9,8 +9,8 @@
         <div class="panel panel-primary">
           <div class="panel-heading"><strong><%= question.title %></strong></div>
           <div class="panel-body">
-            <div><span class="label label-primary">Answer #</span></div>
-            <div><span class="label label-primary">Votes #</span></div>
+            <div><span class="label label-primary">Answer  <%= question.answers.count %></span></div>
+            <div><span class="label label-primary">Votes <%= question.votes.count %></span></div>
             <br>
             <%= question.content %>
             <div class="text-right fixed-bottom">
