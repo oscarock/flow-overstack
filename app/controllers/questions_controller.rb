@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = if params[:search]
+      Question.where('title LIKE ?',"%#{params[:search]}%")
+      .where('content LIKE ?',"%#{params[:search]}%")
+    else
+      @questions = Question.all
+    end
   end
 
   def new
