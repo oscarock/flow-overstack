@@ -1,11 +1,16 @@
 <div class="container">
+  <% if @errors %>
+      <% @errors.each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+  <% end %>
   <h1><%= @question.title %></h1>
   <br>
   <div class="row">
     <div class="col-sm-1">
-      <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+      <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if @question.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
       <h4 class="text-center"><%= @question.votes.count %></h4>
-      <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+      <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if @question.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
     </div>
     <div class="col-sm-11">
       <div class="panel panel-primary" style="margin-top: 25px;">
@@ -31,10 +36,10 @@
   <% end %>
   <% @question.comments.each do |comment| %>
     <div class="row">
-      <div class="col-sm-2" style="    right: -50px;">
-        <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+      <div class="col-sm-2" style="right: -50px;">
+        <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
         <h4 class="text-center"><%= comment.votes.count %></h4>
-        <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+        <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
       </div>
       <div class="col-sm-10">
         <div class="panel panel-primary" style="margin-top: 25px;">
@@ -70,9 +75,9 @@
 
       <div class="row">
         <div class="col-sm-1">
-          <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=answer&voteable_id=<%= answer.id %>"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+          <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=answer&voteable_id=<%= answer.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if answer.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
           <h4 class="text-center"><%= answer.votes.count %></h4>
-          <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=answer&voteable_id=<%= answer.id %>"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+          <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=answer&voteable_id=<%= answer.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if answer.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
         </div>
         <div class="col-sm-11">
           <div class="panel panel-primary" style="margin-top: 25px;">
@@ -103,9 +108,9 @@
         <% answer.comments.each do |answer_comment| %>
           <div class="row">
             <div class="col-sm-2" style="right: -65px;">
-              <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-up"></span></a><br></h4>
+              <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if answer_comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
               <h4 class="text-center"><%= answer_comment.votes.count %></h4>
-              <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-down"></span></a><br></h4>
+              <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if answer_comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
             </div>
             <div class="col-sm-10">
               <div class="panel panel-primary" style="margin-top: 25px;">

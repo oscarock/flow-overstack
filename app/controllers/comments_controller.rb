@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     if @comments.save
       redirect_to question_path(params[:comment][:commentable_id])
     else
-      render question_path(params[:comment][:commentable_id])
+      @errors = @comments.errors.full_messages
+      # render :show
+      redirect_to question_path(params[:comment][:commentable_id])
     end
   end
 

@@ -5,7 +5,9 @@ class AnswersController < ApplicationController
     if @answers.save
       redirect_to questions_path
     else
-      render questions_path(question)
+      @errors = @comments.errors.full_messages
+      redirect_to questions_path(question)
+      # render questions_path(question)
     end
   end
 
