@@ -36,12 +36,12 @@
   <% end %>
   <% @question.comments.each do |comment| %>
     <div class="row">
-      <div class="col-sm-2" style="right: -50px;">
+      <!-- <div class="col-sm-2" style="right: -50px;">
         <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
         <h4 class="text-center"><%= comment.votes.count %></h4>
         <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
-      </div>
-      <div class="col-sm-10">
+      </div> -->
+      <div class="col-sm-11 col-sm-offset-1">
         <div class="panel panel-primary" style="margin-top: 25px;">
           <div class="panel-body"><%= comment.title %></div>
         </div>
@@ -51,7 +51,7 @@
   <br>
 
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-2">
+    <div class="col-sm-11 col-sm-offset-1">
       <%= form_for [@question, @comment] do |f| %>
         <div class="form-group">
           <%= f.hidden_field 'commentable_id', value: @question.id %>
@@ -90,15 +90,15 @@
 
         <% if answer.comments.count == 0 %>
           <div class="row">
-            <div class="col-sm-6">
-                <h3 class="text-center">Comentario Sin Respuestas :(</h3>
+            <div class="col-sm-10 col-sm-offset-1">
+                <h3>Comentario Sin Respuestas :(</h3>
                 <br>
             </div>
           </div>
         <% else %>
           <div class="row">
-            <div class="col-sm-6">
-                <h3 class="text-center">Comentario Respuesta(s)</h3>
+            <div class="col-sm-10 col-sm-offset-1">
+                <h3>Comentario Respuesta(s)</h3>
             </div>
           </div>
         <% end %>
@@ -107,12 +107,12 @@
 
         <% answer.comments.each do |answer_comment| %>
           <div class="row">
-            <div class="col-sm-2" style="right: -65px;">
+            <!-- <div class="col-sm-2" style="right: -65px;">
               <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if answer_comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
               <h4 class="text-center"><%= answer_comment.votes.count %></h4>
               <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if answer_comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
-            </div>
-            <div class="col-sm-10">
+            </div> -->
+            <div class="col-sm-11 col-sm-offset-1">
               <div class="panel panel-primary" style="margin-top: 25px;">
                 <div class="panel-body"><%= answer_comment.title %></div>
               </div>
@@ -121,7 +121,7 @@
         <% end %>
 
         <div class="row">
-          <div class="col-sm-10 col-sm-offset-2">
+          <div class="col-sm-11 col-sm-offset-1">
             <%= form_for [@question, @comment] do |f| %>
               <div class="form-group">
                 <%= f.hidden_field 'commentable_id', value: answer.id %>
