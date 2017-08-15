@@ -8,9 +8,9 @@
   <br>
   <div class="row">
     <div class="col-sm-1">
-      <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if @question.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
-      <h4 class="text-center"><%= @question.votes.count %></h4>
-      <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if @question.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
+      <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if @question.calculate_votes > 0 %>color: green <% end %>"></span></a><br></h4>
+      <h4 class="text-center"><%= @question.calculate_votes %></h4>
+      <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=question&voteable_id=<%= @question.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if @question.calculate_votes < 0 %>color: red <% end %>"></span></a><br></h4>
     </div>
     <div class="col-sm-11">
       <div class="panel panel-primary" style="margin-top: 25px;">

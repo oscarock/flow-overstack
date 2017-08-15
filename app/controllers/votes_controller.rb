@@ -1,7 +1,8 @@
 class VotesController < ApplicationController
   def addVote
     voteable = params[:voteable].classify.constantize.find(params[:voteable_id])
-    @vote = voteable.votes.create()
+    @vote = voteable.votes.create(direction: 'arriba')
+    # @vote = voteable.votes.create()
     redirect_to question_path(params[:id])
 
     # if session[:vote_count] == nil
@@ -13,7 +14,8 @@ class VotesController < ApplicationController
 
   def removeVote
     voteable = params[:voteable].classify.constantize.find(params[:voteable_id])
-    @vote = voteable.votes.last.destroy()
+    # @vote = voteable.votes.last.destroy()
+    @vote = voteable.votes.create(direction: 'abajo')
     redirect_to question_path(params[:id])
   end
 end
