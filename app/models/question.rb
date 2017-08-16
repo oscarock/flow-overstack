@@ -10,6 +10,14 @@ class Question < ApplicationRecord
 
   def calculate_votes
     votes = self.votes.group(:direction).count
+    if votes.empty?
+      votes["arriba"] = 0
+      votes["abajo"] = 0
+    elsif votes["arriba"] == nil
+      votes["arriba"] = 0
+    elsif votes["abajo"] == nil
+      votes["abajo"] = 0
+    end
     votes["arriba"] - votes["abajo"]
   end
 end

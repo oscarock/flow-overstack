@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      redirect_to questions_path
+      redirect_to questions_path, :notice => "Pregunta guardada"
     else
       @errors = @question.errors.full_messages
       render :new

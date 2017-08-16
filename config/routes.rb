@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
-  get 'add_vote', to: 'votes#addVote'
-  get 'remove_vote', to: 'votes#removeVote'
+  get 'add_vote_question', to: 'votes#addVoteQuestion'
+  get 'add_vote_answer', to: 'votes#addVoteAnswer'
+  get 'remove_vote_question', to: 'votes#removeVoteQuestion'
+  get 'remove_vote_answer', to: 'votes#removeVoteAnswer'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 # <?xml version="1.0" encoding="utf-8" ?>

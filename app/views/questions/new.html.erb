@@ -1,7 +1,7 @@
 <div class="container">
   <% if @errors %>
       <% @errors.each do |error| %>
-      <li><%= error %></li>
+      <li class="text-center alert alert-danger"><%= error %></li>
       <% end %>
   <% end %>
   <div class="row">

@@ -3,10 +3,10 @@ class AnswersController < ApplicationController
     question = Question.find(params[:question_id])
     @answers = question.answers.new(answer_params)
     if @answers.save
-      redirect_to questions_path
+      redirect_to questions_path(params[:question_id]), :notice => "Respuesta guardada"
     else
-      @errors = @comments.errors.full_messages
-      redirect_to questions_path(question)
+      @errors = @answers.errors.full_messages
+      redirect_to questions_path(params[:question_id]), :alert => @errors
       # render questions_path(question)
     end
   end
