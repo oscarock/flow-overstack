@@ -31,11 +31,6 @@
   <% end %>
   <% @question.comments.each do |comment| %>
     <div class="row">
-      <!-- <div class="col-sm-2" style="right: -50px;">
-        <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
-        <h4 class="text-center"><%= comment.votes.count %></h4>
-        <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
-      </div> -->
       <div class="col-sm-11 col-sm-offset-1">
         <div class="panel panel-primary" style="margin-top: 25px;">
           <div class="panel-body"><%= comment.title %></div>
@@ -47,14 +42,19 @@
 
   <div class="row">
     <div class="col-sm-11 col-sm-offset-1">
-      <%= form_for [@question, @comment] do |f| %>
-        <div class="form-group">
-          <%= f.hidden_field 'commentable_id', value: @question.id %>
-          <%= f.hidden_field 'commentable', value: 'question' %>
-          <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar" %><br>
-        </div>
-        <%= f.submit "Comentar", class: "pull-right btn btn-success" %>
+      <% if user_signed_in? %>
+        <%= form_for [@question, @comment] do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field 'commentable_id', value: @question.id %>
+            <%= f.hidden_field 'commentable', value: 'question' %>
+            <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar" %><br>
+          </div>
+          <%= f.submit "Comentar", class: "pull-right btn btn-success" %>
+        <% end %>
+        <% else %>
+          <p class="text-center alert alert-danger">Debe estar autenticado para poder comentar la pregunta</p>
       <% end %>
+
     </div>
   </div>
   <hr>
@@ -102,11 +102,6 @@
 
         <% answer.comments.each do |answer_comment| %>
           <div class="row">
-            <!-- <div class="col-sm-2" style="right: -65px;">
-              <h4 class="text-center"><a href="/add_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-up" style="<% if answer_comment.votes.count > 0 %>color: green <% end %>"></span></a><br></h4>
-              <h4 class="text-center"><%= answer_comment.votes.count %></h4>
-              <h4 class="text-center"><a href="/remove_vote?id=<%= @question.id %>&voteable=comment&voteable_id=<%= answer_comment.id %>"><span class="glyphicon glyphicon-menu-down" style="<% if answer_comment.votes.count < 0 %>color: red <% end %>"></span></a><br></h4>
-            </div> -->
             <div class="col-sm-11 col-sm-offset-1">
               <div class="panel panel-primary" style="margin-top: 25px;">
                 <div class="panel-body"><%= answer_comment.title %></div>
@@ -117,26 +112,34 @@
 
         <div class="row">
           <div class="col-sm-11 col-sm-offset-1">
-            <%= form_for [@question, @comment] do |f| %>
-              <div class="form-group">
-                <%= f.hidden_field 'commentable_id', value: answer.id %>
-                <%= f.hidden_field 'commentable', value: 'answer' %>
-                <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar Respuesta" %><br>
-              </div>
-            <%= f.submit "Comentar Respuesta", class: "pull-right btn btn-success" %><br>
+            <% if user_signed_in? %>
+              <%= form_for [@question, @comment] do |f| %>
+                <div class="form-group">
+                  <%= f.hidden_field 'commentable_id', value: answer.id %>
+                  <%= f.hidden_field 'commentable', value: 'answer' %>
+                  <%= f.text_area :title, class: "form-control input-lg", placeholder: "Comentar Respuesta" %><br>
+                </div>
+              <%= f.submit "Comentar Respuesta", class: "pull-right btn btn-success" %><br>
+              <% end %>
+              <% else %>
+                <p class="text-center alert alert-danger">Debe estar autenticado para poder comentar la respuesta</p>
+            <% end %>
           </div>
         </div>
-
         <br>
         <hr>
-        <% end %>
     <% end %>
 
-    <%= form_for [@question, @answer] do |f| %>
-       <div class="form-group">
-         <%= f.text_area :content, class: "form-control input-lg", placeholder: "Responder Pregunta" %><br>
-       </div>
-       <%= f.submit "Responder", class: "pull-right btn btn-success" %>
-       <br>
+    <% if user_signed_in? %>
+      <%= form_for [@question, @answer] do |f| %>
+         <div class="form-group">
+           <%= f.text_area :content, class: "form-control input-lg", placeholder: "Responder Pregunta" %><br>
+         </div>
+         <%= f.submit "Responder", class: "pull-right btn btn-success" %>
+         <br>
+      <% end %>
+    <% else %>
+      <p class="text-center alert alert-danger">Debe estar autenticado para poder responder la pregunta</p>
     <% end %>
+
 </div>

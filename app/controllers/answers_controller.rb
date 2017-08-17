@@ -7,7 +7,6 @@ class AnswersController < ApplicationController
     else
       @errors = @answers.errors.full_messages
       redirect_to questions_path(params[:question_id]), :alert => @errors
-      # render questions_path(question)
     end
   end
 

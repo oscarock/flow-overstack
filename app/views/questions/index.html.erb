@@ -2,7 +2,11 @@
   <div class="row">
       <h2 class="text-left">Questions</h2>
       <br>
-      <%= link_to "Add Question", new_question_path, class: " btn btn-success"  %>
+      <% if user_signed_in? %>
+        <%= link_to "Add Question", new_question_path, class: " btn btn-success"  %>
+      <% else %>
+        <p class="text-center alert alert-danger">Debe estar autenticado Crear una pregunta</p>
+      <% end %>
       <br>
       <br>
       <% @questions.each do |question| %>

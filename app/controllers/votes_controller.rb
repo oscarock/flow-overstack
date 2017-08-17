@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_action :authenticate_user!
   def addVoteQuestion
     if Vote.exists?(direction: "arriba", voteable_type: "Question", user_id: current_user.id)
       flash.alert = "No puedes Votar mas de 1 vez por pregunta."
