@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-      <h2 class="text-left">Mis Preguntas</h2>
+      <h2 class="text-left">Todas las Preguntas</h2>
       <br>
       <% if user_signed_in? %>
         <%= link_to "Add Question", new_question_path, class: " btn btn-success"  %>
@@ -9,12 +9,12 @@
       <% end %>
       <br>
       <br>
-      <% @questions.each do |question| %>
+      <% questions.each do |question| %>
         <div class="panel panel-primary">
           <div class="panel-heading"><strong><%= question.title %></strong></div>
           <div class="panel-body">
-            <div><span class="label label-primary">Respuestas  <%= question.answers.count %></span></div>
-            <div><span class="label label-primary">Votos <%= question.votes.count %></span></div>
+            <div><span class="label label-primary">Respuestas:  <%= question.answers.count %></span></div>
+            <div><span class="label label-primary">Votos: <%= question.votes.count %></span></div>
             <br>
             <%= question.content %>
             <div class="text-right fixed-bottom">

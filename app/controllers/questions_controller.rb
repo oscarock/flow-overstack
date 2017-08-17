@@ -4,8 +4,13 @@ class QuestionsController < ApplicationController
       Question.where('title LIKE ?',"%#{params[:search]}%")
       .where('content LIKE ?',"%#{params[:search]}%")
     else
-      @questions = Question.all
+      @questions = Question.where(user_id: current_user.id)
     end
+  end
+
+  def question_all
+    @questions = Question.all
+    render action: 'question_all', locals: { questions: @questions }
   end
 
   def new

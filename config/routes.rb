@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root "questions#index"
+  root "questions#question_all"
   devise_for :users
   resources :questions do
     resources :comments, only: [:create]
     resources :answers, only: [:create]
   end
 
+  get 'all_question', to: 'questions#question_all'
   get 'add_vote_question', to: 'votes#addVoteQuestion'
   get 'add_vote_answer', to: 'votes#addVoteAnswer'
   get 'remove_vote_question', to: 'votes#removeVoteQuestion'
